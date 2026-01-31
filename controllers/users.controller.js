@@ -9,7 +9,7 @@ export const addUser = async(req,res)=>{
         if(error){
             return res.status(400).json({error:error.message})
         }
-        if(data){
+        if(data.email){
             return res.status(409).json({error:"email already exist"})
         }
         const {data:addUser,error:userError} = await supabase
