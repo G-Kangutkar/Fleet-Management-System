@@ -4,6 +4,7 @@ dotenv.config();
 import useUser from './routes/users.route.js';
 import useVeh from "./routes/vehicle.route.js";
 import useTrip from './routes/trips.route.js';
+import useAna from './routes/analytic.route.js';
 const app = express();
 
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/users',useUser);
 app.use('/vehicles',useVeh);
 app.use('/trips',useTrip);
+app.use('/analytics',useAna);
 
 
 
