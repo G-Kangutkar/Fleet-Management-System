@@ -19,9 +19,9 @@ app.use('/analytics',useAna);
 
 
 
-app.use('/',()=>{
-    return res.json({error:"Route does not exists"})
-})
+// app.use('/',()=>{
+//     return res.json({error:"Route does not exists"})
+// })
 const PORT = process.env.PORT || 4500;
 
 app.listen(()=>{
