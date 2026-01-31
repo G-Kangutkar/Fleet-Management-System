@@ -52,7 +52,7 @@ export const addDriver =async(req,res)=>{
         const {vehicleId} = req.params;
         const {driver_id} = req.body;
         const {data,error}= await supabase
-        .from('vehicles').update({driver_id:driver_id}).eq('id',vehicleId).single()
+        .from('vehicles').update({driver_id:driver_id}).eq('id',vehicleId).select().single()
         if(error){
             return res.status(400).json({error:error.message})
         }

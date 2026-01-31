@@ -40,3 +40,57 @@ export const createTrip = async(req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
+
+export const getTrip = async(req,res)=>{
+    try {
+        const {tripId} = req.params;
+        const {data,error}= await supabase
+        .from('trips').select('*').eq('id',tripId).single()
+        if(error){
+            return res.status(400).json({error:error.message})
+        }
+        res.status(200).json({
+            message:'Trip data',
+            data
+        })
+
+
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+}
+
+export const updateTrip =async(req,res)=>{
+    try {
+        const {tripId} = req.params;
+        const {start_date,location,passengers} = req.body;
+        const {data,error}= await supabase
+        .from('trips').update({start_date,location,passengers}).eq('id',tripId).select().single()
+        if(error){
+            return res.status(400).json({error:error.message})
+        }
+        res.status(200).json({
+            message:'Trip data',
+            data
+        })
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+}
+
+export const deleteTrip = async(req,res)=>{
+    try {
+        const {tripId} = req.params;
+        const {data,error}= await supabase
+        .from('trips').delete().eq('id',tripId).select().single()
+        if(error){
+            return res.status(400).json({error:error.message})
+        }
+        res.status(200).json({
+            message:'Trip deleted',
+            data
+        })
+    } catch (error) {
+        
+    }
+}
